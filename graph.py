@@ -35,5 +35,6 @@ def main():
     with open('listaAdjacencia.json', 'w') as json_file:
         json.dump(listaDeAdjacencia, json_file)
     
-    print(listaDeAdjacencia)
+    # print(listaDeAdjacencia)
+    print(BFS(listaDeAdjacencia, 'campo-limpo', 'largo-treze'))
 main()
