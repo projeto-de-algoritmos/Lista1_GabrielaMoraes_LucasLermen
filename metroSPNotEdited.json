@@ -56,7 +56,7 @@
 {"name":"Santana","station":"santana","lat":-23.50258755,"lon":-46.6252175409,"line":"[azul]","neigh":"[jardim-sao-paulo-ayrton-senna,carandiru]"},
 {"name":"Santo Amaro","station":"santo-amaro","lat":-23.6562303,"lon":-46.7191156,"line":"[lilas]","neigh":"[giovanni-gronchi,largo-treze]"},
 {"name":"Santos Imigrantes","station":"santos-imigrantes","lat":-23.5958959,"lon":-46.6207594,"line":"[verde]","neigh":"[chacara-klabin,alto-do-ipiranga]"},
-{"name":"Santuario Nossa Senhora De Fatima Sumare","station":"santuario-nossa-senhora-de-fatima-sumare","lat":-23.5507519,"lon":-46.6800962,"line":"[verde]","neigh":"[vila-madalena,clinicas]"},
+{"name":"Sumare","station":"santuario-nossa-senhora-de-fatima-sumare","lat":-23.5507519,"lon":-46.6800962,"line":"[verde]","neigh":"[vila-madalena,clinicas]"},
 {"name":"Sao Bento","station":"sao-bento","lat":-23.5443802,"lon":-46.6363175,"line":"[azul]","neigh":"[luz,se]"},
 {"name":"Sao Joaquim","station":"sao-joaquim","lat":-23.5613673,"lon":-46.6386013,"line":"[azul]","neigh":"[japao-liberdade,vergueiro]"},
 {"name":"Sao Judas","station":"sao-judas","lat":-23.6258085,"lon":-46.6409209,"line":"[azul]","neigh":"[saude,conceicao]"},

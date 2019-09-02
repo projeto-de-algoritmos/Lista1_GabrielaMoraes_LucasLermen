@@ -1,6 +1,7 @@
 import pandas as pd
 import json
 import matplotlib.pyplot as plt
+import os
 from networkx import nx
 from graphFunction import *
 
@@ -37,48 +38,68 @@ def main():
     with open('listaAdjacencia.json', 'w') as json_file:
         json.dump(listaDeAdjacencia, json_file)
     
-    # print(listaDeAdjacencia)
-    print(BFS(listaDeAdjacencia, 'campo-limpo', 'largo-treze'))
-
-    # print(dataNotEdited['name'].get('0'))
-
-    G = nx.Graph()
-    labels = {}
-    mapaDeCores = []
-
-    for estacao, arestas in listaDeAdjacencia.items():  
-
-        corNo = recupera_linha(dataNotEdited, estacao)
-        labels[estacao] = recupera_nome(dataNotEdited, estacao)  
-        G.add_node(estacao)  
-        # corNo = nx.get_node_attributes(G,'color')
-        # corNo = recupera_linha(dataNotEdited, estacao)
-        if corNo == '[lilas]':
-            mapaDeCores.append('#8B008B')
-        elif corNo == '[verde]':
-            mapaDeCores.append('#006400')
-        elif corNo == '[azul]':
-            
-            mapaDeCores.append('#000080')
-        elif corNo == '[vermelha]':
-            mapaDeCores.append('#FF0000')
-        elif corNo == '[amarela]':
-            mapaDeCores.append('#FFFF00')
-        elif corNo == '[prata]':
-            mapaDeCores.append('#C0C0C0')
-        else:
-            mapaDeCores.append('#FFDAB9')
-
-        for aresta in arestas:
-            G.add_edge(estacao, aresta)
-
-    print(mapaDeCores)
     
-    listaNos = G.nodes()
-    listaNos = sorted((set(listaNos)))
-    posicoes = get_posicoes()
+    while True:
+        os.system("clear")
+        opcao = menuPrincipal()
+        if opcao == '1':
+            origem = input("Estação de Origem: ")
+            destino = input("Estação de Destino: ")
+            menor_caminho = BFS(listaDeAdjacencia, origem, destino)
+            print('Esse é o menor caminho para chegar no seu destino:')
+            for item in menor_caminho:
+                print(recupera_nome(dataNotEdited, item)+' - ' +recupera_linha(dataNotEdited, item))
+            
+            G = nx.Graph()
+            labels = {}
+            mapaDeCores = []
 
-    nx.draw(G, pos=posicoes, nodelist=listaNos,with_labels=True,labels=labels, node_color=mapaDeCores)
-    plt.show()
+            for estacao, arestas in listaDeAdjacencia.items():  
+
+                corNo = recupera_linha(dataNotEdited, estacao)
+                labels[estacao] = recupera_nome(dataNotEdited, estacao)  
+                G.add_node(estacao)  
+                # corNo = nx.get_node_attributes(G,'color')
+                # corNo = recupera_linha(dataNotEdited, estacao)
+                if corNo == '[lilas]':
+                    mapaDeCores.append('#8B008B')
+                elif corNo == '[verde]':
+                    mapaDeCores.append('#006400')
+                elif corNo == '[azul]':
+                    mapaDeCores.append('#000080')
+                elif corNo == '[vermelha]':
+                    mapaDeCores.append('#FF0000')
+                elif corNo == '[amarela]':
+                    mapaDeCores.append('#FF8C00')
+                elif corNo == '[prata]':
+                    mapaDeCores.append('#1C1C1C')
+                else:
+                    mapaDeCores.append('#8B4513')
+
+                for aresta in arestas:
+                    G.add_edge(estacao, aresta)
+
+            listaNos = G.nodes()
+            listaNos = sorted((set(listaNos)))
+            posicoes = get_posicoes()
+
+            fig1 = plt.figure('Grafo Principal')
+            nx.draw(G, pos=posicoes, nodelist=listaNos,with_labels=True,labels=labels, node_color=mapaDeCores, font_size = 6, font_color = 'white', edge_color = '#A0522D')
+            fig1.set_facecolor("#00000F")
+
+
+            fig2 = plt.figure('Subgrafo')
+            fig2.set_facecolor("#00000F")
+            ax = plt.gca()
+            ax.set_facecolor('#00000F')
+            subgraph = G.subgraph(menor_caminho)                
+            nx.draw_networkx(subgraph, pos=posicoes, font_size = 8,edge_color = '#00CED1', node_color = '#00CED1', font_color = 'white')
+
+
+            plt.show()
+        else:
+            os.system("clear")
+            print('Encerrando Programa!')
+            break
 
 main()

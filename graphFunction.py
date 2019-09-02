@@ -44,87 +44,99 @@ def recupera_linha(json_object, station):
         if station == dicionario['station']:
             return dicionario['line']
 
+def menuPrincipal():
+    print('Consultrô SP')
+    print('Escolha uma das opções abaixo: ')
+    print('1 - Encontrar menor caminho entre estações')
+    print('0 - Sair')
+    opcao = input("O que deseja fazer? ")
+    while(opcao != '0' and opcao != '1'):
+        print("Opcão inválida! Digite novamente")
+        opcao = input("O que deseja fazer? ")
+    return opcao
+
 def get_posicoes():
     pos = {
-        'aacd-servidor':(100,20),
-        'adolfo-pinheiro':(20,20),
-        'alto-da-boa-vista':(20,20),
-        'alto-do-ipiranga':(20,20),
-        'ana-rosa':(50,40),  #azul
-        'anhangabau':(20,20),
-        'armenia':(50, 76),  #azul
-        'artur-alvim':(20,20),
-        'belem':(20,20),
-        'borba-gato':(20,20),
-        'bras':(20,20),
-        'bresser-mooca':(20,20),
-        'brigadeiro':(20,20),
-        'brooklin':(20,20),
-        'butanta':(20,20),
-        'camilo-haddad':(20,20),
-        'campo-limpo':(20,20),
-        'capao-redondo':(20,20),
-        'carandiru':(50,84), #azul
-        'carrao':(20,20),
-        'chacara-klabin':(20,20),
-        'clinicas':(20,20),
-        'conceicao':(50,16),  #azul
-        'consolacao':(20,20),
-        'corinthians-itaquera':(20,20),
-        'eucaliptos':(20,20),
-        'faria-lima':(20,20),
-        'fradique-coutinho':(20,20),
-        'giovanni-gronchi':(20,20),
-        'guilhermina-esperanca':(20,20),
-        'higienopolis-mackenzie':(20,20),
-        'hospital-sao-paulo':(20,20),
-        'jabaquara':(50,12), #azul
-        'japao-liberdade':(50, 56), #azul
-        'jardim-sao-paulo-ayrton-senna':(50, 92), #azul
-        'largo-treze':(20,20),
-        'luz':(50,68),  #azul
-        'marechal-deodoro':(20,20),
-        'moema':(20,20),
-        'oratorio':(20,20),
-        'oscar-freire':(20,20),
-        'palmeiras-barra-funda':(20,20),
-        'parada-inglesa':(50, 96), #azul
-        'paraiso':(50,44),  #azul
-        'patriarca-vila-re':(20,20),
-        'paulista':(20,20),
-        'pedro-ii':(20,20),
-        'penha':(20,20),
-        'pinheiros':(20,20),
-        'portuguesa-tiete':(50,80),  #azul
-        'praca-da-arvore':(50,28),  #azul
-        'republica':(20,20),
-        'sacoma':(20,20),
-        'santa-cecilia':(20,20),
-        'santa-cruz':(50,32),  #azul
-        'santana':(50,88),  #azul
-        'santo-amaro':(20,20),
-        'santos-imigrantes':(20,20),
-        'santuario-nossa-senhora-de-fatima-sumare':(20,20),
-        'sao-bento':(50,64),  #azul
-        'sao-joaquim':(50, 52), #azul
-        'sao-judas':(50,20),  #azul
-        'sao-lucas':(20,20),
-        'sao-paulo-morumbi':(20,20),
-        'saude':(50,24),  #azul
-        'se':(50,60),  #azul
-        'tamanduatei':(20,20),
-        'tatuape':(20,20),
-        'tiradentes':(50,72),  #azul
-        'trianon-masp':(20,20),
+        'aacd-servidor':(30,12), #lilas
+        'adolfo-pinheiro':(-22,9), #lilas
+        'alto-da-boa-vista':(-12,6), #lilas
+        'alto-do-ipiranga':(80,28), #verde
+        'ana-rosa':(50,25),  #azul
+        'anhangabau':(40,50), #laranja
+        'armenia':(50, 70),  #azul
+        'artur-alvim':(150,61),#vermelha
+        'belem':(85,55), #laranja
+        'borba-gato':(0,6), #lilas
+        'bras':(67,55), #laranja
+        'bresser-mooca':(76,55), #laranja
+        'brigadeiro':(38,31),#verde
+        'brooklin':(10,6), #lilas
+        'butanta':(-38,33),#amarelo
+        'camilo-haddad':(135,42), #prata
+        'campo-limpo':(-60,22), #lilas
+        'capao-redondo':(-70,24), #lilas
+        'carandiru':(50,80), #azul
+        'carrao':(100,55), #laranja
+        'chacara-klabin':(60,23), #lilas,verde
+        'clinicas':(4,40), #verde
+        'conceicao':(50,-5),  #azul
+        'consolacao':(13,35), #verde
+        'corinthians-itaquera':(160,64), #laranja
+        'eucaliptos':(18, 7), #lilas
+        'faria-lima':(-18,33),#amarelo
+        'fradique-coutinho':(-5,33), #amarelo
+        'giovanni-gronchi':(-40,18), #lilas
+        'guilhermina-esperanca':(127,57), #laranja
+        'higienopolis-mackenzie':(23,45), #amarelo
+        'hospital-sao-paulo':(37,15), #lilas
+        'jabaquara':(50,-10), #azul
+        'japao-liberdade':(50, 45), #azul
+        'jardim-sao-paulo-ayrton-senna':(50, 90), #azul
+        'largo-treze':(-28,12), #lilas
+        'luz':(50,60),  #azul
+        'marechal-deodoro':(5,50), #laranja
+        'moema':(23,10), #lilas
+        'oratorio':(108,42), #prata
+        'oscar-freire':(3,35), #amarelo
+        'palmeiras-barra-funda':(-15,50), #laranja
+        'parada-inglesa':(50, 95), #azul
+        'paraiso':(50,30),  #azul
+        'patriarca-vila-re':(140,59), #laranja
+        'paulista':(16,40), #amarelo
+        'pedro-ii':(60,50), #laranja
+        'penha':(106,55), #laranja
+        'pinheiros':(-28,33),#amarelo
+        'portuguesa-tiete':(50,75),  #azul
+        'praca-da-arvore':(50,10),  #azul
+        'republica':(30,50), #laranja
+        'sacoma':(85,32), #verde
+        'santa-cecilia':(20,50), #laranja
+        'santa-cruz':(50,15),  #azul
+        'santana':(50,85),  #azul
+        'santo-amaro':(-34,15), #lilas
+        'santos-imigrantes':(75,23), #verde
+        'santuario-nossa-senhora-de-fatima-sumare':(-6,40), #verde
+        'sao-bento':(50,55),  #azul
+        'sao-joaquim':(50, 40), #azul
+        'sao-judas':(50,0),  #azul
+        'sao-lucas':(120,42), #prata
+        'sao-paulo-morumbi':(-50,33), #amarelo
+        'saude':(50,5),  #azul
+        'se':(50,50),  #azul
+        'tamanduatei':(90,37), #verde
+        'tatuape':(92,55), #laranja
+        'tiradentes':(50,65),  #azul
+        'trianon-masp':(27,32),#verde
         'tucuruvi':(50,100), #azul
-        'vergueiro':(50,48),  #azul
-        'vila-das-belezas':(20,20),
-        'vila-madalena':(20,20),
-        'vila-mariana':(50,36),  #azul
-        'vila-matilde':(20,20),
-        'vila-prudente':(20,20),
-        'vila-tolstoi':(20,20),
-        'vila-uniao':(20,20) }
+        'vergueiro':(50,35),  #azul
+        'vila-das-belezas':(-47,22), #lilas
+        'vila-madalena':(-16,40), #verde
+        'vila-mariana':(50,20),  #azul
+        'vila-matilde':(115,55), #laranja
+        'vila-prudente':(95,42), #verde, prata
+        'vila-tolstoi':(160,42), #prata
+        'vila-uniao':(150,42) #prata 
+        }
     return pos
 
 
